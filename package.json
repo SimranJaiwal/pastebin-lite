@@ -1,0 +1,32 @@
+{
+  "name": "pastebin-lite",
+  "version": "1.0.0",
+  "description": "A lightweight serverless pastebin application with TTL and view limits",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "pastebin",
+    "paste",
+    "pastebin",
+    "paste-bin",
+    "paste-bin-lite"
+  ],
+  "author": "Meet Patel",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dompurify": "^3.2.3",
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "express": "^5.2.1",
+    "jsdom": "^25.0.1",
+    "mongoose": "^8.9.3",
+    "nanoid": "^5.0.9"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
