@@ -7,51 +7,15 @@
 import mongoose from 'mongoose';
 
 const pasteSchema = new mongoose.Schema({
-    // Unique short ID for the paste (e.g., "abc123")
-    pasteId: {
-        type: String,
-        required: true,
-        unique: true,
-        index: true,
-    },
-
-    // The actual paste content
-    content: {
-        type: String,
-        required: true,
-    },
-
-    // When the paste was created
-    createdAt: {
-        type: Date,
-        required: true,
-        default: Date.now,
-    },
-
-    // When the paste expires (optional, set via TTL)
-    expiresAt: {
-        type: Date,
-        default: null,
-        index: true, // Index for efficient expiry queries
-    },
-
-    // Maximum number of views allowed (optional)
-    maxViews: {
-        type: Number,
-        default: null,
-    },
-
-    // Current view count
-    viewCount: {
-        type: Number,
-        default: 0,
-        required: true,
-    },
-
+  pasteId: { type: String, required: true, unique: true, index: true },
+  content: { type: String, required: true },
+  expiresAt: { type: Date, default: null, index: true },
+  maxViews: { type: Number, default: null },
+  viewCount: { type: Number, default: 0, required: true },
 }, {
-    // Add timestamps for createdAt and updatedAt
-    timestamps: true,
+  timestamps: true,
 });
+
 
 // Create compound index for efficient queries
 pasteSchema.index({ pasteId: 1, expiresAt: 1 });
@@ -80,6 +44,6 @@ pasteSchema.methods.incrementViewCount = async function () {
     return this.viewCount;
 };
 
-const Paste = mongoose.model('Paste', pasteSchema);
+const Paste = mongoose.models.Paste || mongoose.model('Paste', pasteSchema);
 
 export default Paste;
